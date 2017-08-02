@@ -3,7 +3,11 @@
 <form method="post" action="/kullanici_kaydet">
     <input type="text" name="isim" placeholder="İsmi giriniz" />
     <input type="text" name="telefon" placeholder="Telefon Numarası Girin" />
+    <br />
+    <textarea name="bio" placeholder="Biografi"></textarea>
+    <br />
     <input type="submit" value="Yeni Kullanici" />
+
 </form>
 
 {% endblock %}
@@ -12,13 +16,15 @@
 
 <table width="100%">
     <thead>
+        <th>Id</th>
         <th>İsim</th>
         <th>Telefon</th>
     </thead>
     <tbody>
         {% for kisi in kisilistesi %}
         <tr>
-            <td>{{kisi.isim}}</td>
+            <td>{{kisi.id}}</td>
+            <td><a href="/kisi/{{kisi.id}}">{{kisi.isim}}</a></td>
             <td>{{kisi.telefon}}</td>
         </tr>
         {% endfor %}

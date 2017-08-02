@@ -32,12 +32,32 @@ def kullanici_kaydet():
 
     if request.method == "POST":
         if request.form.get('isim', None) and request.form.get('telefon', None):
+
+            if len(kisilistesi) > 0:
+                uid = kisilistesi[-1].get("id") + 1
+            else:
+                uid = 1
             kisilistesi.append({"isim": request.form.get('isim'),
-                                "telefon": request.form.get('telefon')})
+                                "telefon": request.form.get('telefon'),"id":uid,
+                                "bio":request.form.get('bio')})
 
             open(json_file,"w+").write(json.dumps(kisilistesi)) #dosya yazma islemi
 
     return redirect("/kullanicilar")
+
+
+@app.route("/kisi/<int:uid>")
+def kisi_goruntuleme(uid):
+    try:
+        kisilistesi = json.load(open(json_file, "r"))
+    except:
+        kisilistesi = []
+    bulunan_kisi = None
+    for kisi in kisilistesi:
+        if kisi.get("id") == uid:
+            bulunan_kisi = kisi
+
+    return render_template("kisi.html",kisi=bulunan_kisi)
 
 @app.route("/kullanici/<kullanici>")
 def kullanicilar_goruntuleme(kullanici):
