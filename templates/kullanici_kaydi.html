@@ -7,3 +7,22 @@
 </form>
 
 {% endblock %}
+
+{% block footer %}
+
+<table width="100%">
+    <thead>
+        <th>İsim</th>
+        <th>Telefon</th>
+    </thead>
+    <tbody>
+        {% for kisi in kisilistesi %}
+        <tr>
+            <td>{{kisi.isim}}</td>
+            <td>{{kisi.telefon}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
