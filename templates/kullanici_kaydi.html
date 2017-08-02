@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="/kullanici_kaydet">
+    <input type="text" name="isim" placeholder="İsmi giriniz" />
+    <input type="text" name="telefon" placeholder="Telefon Numarası Girin" />
+    <input type="submit" value="Yeni Kullanici" />
+</form>
+
+{% endblock %}
